@@ -48,4 +48,4 @@ jobs:
           script: |
             rm -rf /opt/app/current
             cp -r /opt/app/releases/${{ github.ref_name }}/Magisterka/browser/. /opt/app/current
-            cd /opt/app && docker-compose up -d
+            cd /opt/app && docker-compose restart
