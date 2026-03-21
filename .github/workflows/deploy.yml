@@ -21,9 +21,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Set version
+        run: npm version ${{ github.ref_name }} --no-git-tag-version
+
       - name: Build Angular
         run: |
-          echo "export const environment = { version: '${{ github.ref_name }}' };" > src/environments/environment.prod.ts
+          echo "export const environment = { production: true, version: '${{ github.ref_name }}' };" > src/environments/environment.prod.ts
           npm run build -- --configuration production
 
       - name: Deploy to server
