@@ -22,7 +22,9 @@ jobs:
         run: npm ci
 
       - name: Build Angular
-        run: npm run build -- --configuration production
+        run: |
+          echo "export const environment = { version: '${{ github.ref_name }}' };" > src/environments/environment.prod.ts
+          npm run build -- --configuration production
 
       - name: Deploy to server
         uses: appleboy/scp-action@v0.1.7
