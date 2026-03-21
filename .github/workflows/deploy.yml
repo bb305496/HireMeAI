@@ -42,4 +42,5 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             rm -rf /opt/app/current
-            cp -r /opt/app/releases/${{ github.ref_name }} /opt/app/current
+            cp -r /opt/app/releases/${{ github.ref_name }}/Magisterka/browser/. /opt/app/current
+            cd /opt/app && docker-compose restart
