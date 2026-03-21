@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./current:/usr/share/nginx/html
+    restart: always
+
+networks:
+  app_default:
+    external: true
