@@ -4,7 +4,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   selector: 'app-analyzer-form-component',
   imports: [],
   templateUrl: './analyzer-form-component.html',
-  styleUrl: './analyzer-form-component.css',
+  styleUrl: './analyzer-form-component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnalyzerFormComponent {}

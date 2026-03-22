@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
-  HostListener,
+  HostListener, inject,
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import {Store} from '@ngrx/store';
+import {UiActions} from '../../../store/ui/ui-actions';
 
 interface NavLink {
   label: string;
@@ -15,11 +17,16 @@ interface NavLink {
   selector: 'app-header-component',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './header-component.html',
-  styleUrl: './header-component.css',
+  styleUrl: './header-component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   constructor(private cdr: ChangeDetectorRef) {}
+
+  store = inject(Store);
+  openRegister(): void {
+    this.store.dispatch(UiActions.openModal({ modal: 'register' }));
+  }
 
   readonly navLinks: NavLink[] = [
     { label: 'Home', route: '/', exact: true },

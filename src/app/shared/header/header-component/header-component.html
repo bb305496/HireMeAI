@@ -26,9 +26,9 @@
       <a routerLink="/login" class="header__btn header__btn--ghost">
         Log in
       </a>
-      <a routerLink="/register" class="header__btn header__btn--primary">
+      <button (click)="openRegister()" class="header__btn header__btn--primary">
         Sign up
-      </a>
+      </button>
     </div>
 
     <button
@@ -62,12 +62,12 @@
       </ul>
     </nav>
     <div class="header__mobile-actions">
-      <a routerLink="/login" class="header__btn header__btn--ghost header__btn--full" (click)="closeMobile()">
+      <a (click)="closeMobile()" class="header__btn header__btn--ghost header__btn--full" >
         Log in
       </a>
-      <a routerLink="/register" class="header__btn header__btn--primary header__btn--full" (click)="closeMobile()">
+      <button (click)="openRegister(); closeMobile()" class="header__btn header__btn--primary header__btn--full">
         Sign up
-      </a>
+      </button>
     </div>
   </div>
 
