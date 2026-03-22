@@ -5,3 +5,5 @@
 5. Installing on new server:
    apt install docker.io docker-compose -y
    docker network create app_default
+6. SPA
+7. HTTPS

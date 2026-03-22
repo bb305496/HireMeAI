@@ -26,7 +26,7 @@ jobs:
 
       - name: Build Angular
         run: |
-          echo "export const environment = { production: true, version: '${{ github.ref_name }}', apiUrl: '${{ secrets.API_URL }}' };" > src/environments/environment.prod.ts
+          echo "export const environment = { production: true, version: '${{ github.ref_name }}', apiUrl: '${{ secrets.API_URL_HTTPS }}' };" > src/environments/environment.prod.ts
           npm run build -- --configuration production
 
       - name: Deploy to server
