@@ -1,9 +1,13 @@
 import {
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
-  HostListener,
+  HostListener, inject,
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import {Store} from '@ngrx/store';
+import {UiActions} from '../../../store/ui/ui-actions';
+import {selectIsLoggedIn} from '../../../store/auth/auth-selectors';
+import {AuthActions} from '../../../store/auth/auth-actions';
 
 interface NavLink {
   label: string;
@@ -15,11 +19,15 @@ interface NavLink {
   selector: 'app-header-component',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './header-component.html',
-  styleUrl: './header-component.css',
+  styleUrl: './header-component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   constructor(private cdr: ChangeDetectorRef) {}
+
+  store = inject(Store);
+
+  isLoggedIn = this.store.selectSignal(selectIsLoggedIn);
 
   readonly navLinks: NavLink[] = [
     { label: 'Home', route: '/', exact: true },
@@ -34,6 +42,14 @@ export class HeaderComponent {
   onScroll(): void {
     this.isScrolled = window.scrollY > 12;
     this.cdr.markForCheck();
+  }
+
+  openRegister(): void {
+    this.store.dispatch(UiActions.openModal({ modal: 'register' }));
+  }
+
+  logout(): void {
+    this.store.dispatch(AuthActions.logout());
   }
 
   toggleMobile(): void {
