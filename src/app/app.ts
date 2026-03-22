@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {HireMeComponent} from './components/hire-me-component/hire-me-component';
+import {HireMeComponent} from './features/hire-me/hire-me-component/hire-me-component';
 
 @Component({
   selector: 'app-root',

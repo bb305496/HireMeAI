@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {HeaderComponent} from '../header-component/header-component';
-import {AnalyzerFormComponent} from '../analyzer-form-component/analyzer-form-component';
-import {HomeComponent} from '../home-component/home-component';
-import {FooterComponent} from '../footer-component/footer-component';
+import {HeaderComponent} from '../../../shared/header/header-component/header-component';
+import {AnalyzerFormComponent} from '../../analyzer/analyzer-form-component/analyzer-form-component';
+import {HomeComponent} from '../../home/home-component/home-component';
+import {FooterComponent} from '../../../shared/footer/footer-component/footer-component';
 
 @Component({
   selector: 'app-hire-me-component',
