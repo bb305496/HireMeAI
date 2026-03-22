@@ -23,12 +23,13 @@
     </nav>
 
     <div class="header__actions">
-      <a routerLink="/login" class="header__btn header__btn--ghost">
-        Log in
-      </a>
-      <button (click)="openRegister()" class="header__btn header__btn--primary">
-        Sign up
-      </button>
+      @if (isLoggedIn()) {
+        <span class="header__btn header__btn--primary">My Account</span>
+        <button (click)="logout()" class="header__btn header__btn--ghost">Log out</button>
+      } @else {
+        <a routerLink="/login" class="header__btn header__btn--ghost">Log in</a>
+        <button (click)="openRegister()" class="header__btn header__btn--primary">Sign up</button>
+      }
     </div>
 
     <button
@@ -62,12 +63,13 @@
       </ul>
     </nav>
     <div class="header__mobile-actions">
-      <a (click)="closeMobile()" class="header__btn header__btn--ghost header__btn--full" >
-        Log in
-      </a>
-      <button (click)="openRegister(); closeMobile()" class="header__btn header__btn--primary header__btn--full">
-        Sign up
-      </button>
+      @if (isLoggedIn()) {
+        <span class="header__btn header__btn--primary">My Account</span>
+        <button (click)="logout()" class="header__btn header__btn--ghost">Log out</button>
+      } @else {
+        <a (click)="closeMobile()" class="header__btn header__btn--ghost header__btn--full" >Log in</a>
+        <button (click)="openRegister(); closeMobile()" class="header__btn header__btn--primary header__btn--full">Sign up</button>
+      }
     </div>
   </div>
 
