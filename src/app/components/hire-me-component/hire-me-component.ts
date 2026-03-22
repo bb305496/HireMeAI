@@ -1,8 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {HeaderComponent} from '../header-component/header-component';
 import {AnalyzerFormComponent} from '../analyzer-form-component/analyzer-form-component';
-import {HeroComponent} from '../hero-component/hero-component';
-import {ResultsComponent} from '../results-component/results-component';
+import {HomeComponent} from '../home-component/home-component';
 import {FooterComponent} from '../footer-component/footer-component';
 
 @Component({
@@ -10,8 +9,7 @@ import {FooterComponent} from '../footer-component/footer-component';
   imports: [
     HeaderComponent,
     AnalyzerFormComponent,
-    HeroComponent,
-    ResultsComponent,
+    HomeComponent,
     FooterComponent
   ],
   templateUrl: './hire-me-component.html',
