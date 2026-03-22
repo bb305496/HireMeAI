@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {selectError, selectLoading} from '../../store/auth/auth-selectors';
-import {AuthActions} from '../../store/auth/auth-actions';
-import {UiActions} from '../../store/ui/ui-actions';
+import {selectError, selectLoading} from '../../../store/auth/auth-selectors';
+import {AuthActions} from '../../../store/auth/auth-actions';
+import {UiActions} from '../../../store/ui/ui-actions';
 
 @Component({
   selector: 'app-register-modal-component',

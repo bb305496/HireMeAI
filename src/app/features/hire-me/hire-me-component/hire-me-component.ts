@@ -5,7 +5,7 @@ import {HomeComponent} from '../../home/home-component/home-component';
 import {FooterComponent} from '../../../shared/footer/footer-component/footer-component';
 import {Store} from '@ngrx/store';
 import {selectIsRegisterOpen} from '../../../store/ui/ui-selectors';
-import {RegisterModalComponent} from '../../../shared/register-modal-component/register-modal-component';
+import {RegisterModalComponent} from '../../../shared/register/register-modal-component/register-modal-component';
 
 @Component({
   selector: 'app-hire-me-component',
