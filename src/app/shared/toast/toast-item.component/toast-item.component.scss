@@ -1,0 +1,63 @@
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: #0f1117;
+  border: 1px solid #1e2231;
+  border-radius: 0.75rem;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  min-width: 280px;
+  max-width: 420px;
+  animation: slideUpToast 0.25s ease;
+
+  @media (min-width: 768px) {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    min-width: 380px;
+    max-width: 560px;
+    border-radius: 1rem;
+    gap: 1rem;
+  }
+
+  &--success { border-color: rgba(34, 197, 94, 0.35); }
+  &--error   { border-color: rgba(239, 68, 68, 0.35); }
+  &--info    { border-color: #1e2c45; }
+
+  &__icon   { font-size: 1rem; flex-shrink: 0;
+    @media (min-width: 768px) { font-size: 1.2rem; }
+  }
+
+  &__message { flex: 1; }
+
+  &__close {
+    background: #1a2235;
+    border: 1px solid #1e2c45;
+    color: #8896ae;
+    border-radius: 0.4rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    cursor: pointer;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+    transition: color 0.15s, background-color 0.15s;
+
+    @media (min-width: 768px) {
+      width: 1.9rem;
+      height: 1.9rem;
+      font-size: 0.8rem;
+    }
+
+    &:hover {
+      color: #e2e8f0;
+      background-color: #1e2c45;
+    }
+  }
+}
+
+@keyframes slideUpToast {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

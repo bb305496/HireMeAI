@@ -67,7 +67,7 @@
         <span class="header__btn header__btn--primary">My Account</span>
         <button (click)="logout()" class="header__btn header__btn--ghost">Log out</button>
       } @else {
-        <a (click)="closeMobile()" class="header__btn header__btn--ghost header__btn--full" >Log in</a>
+        <a (click)="openLogin(); closeMobile()" class="header__btn header__btn--ghost header__btn--full" >Log in</a>
         <button (click)="openRegister(); closeMobile()" class="header__btn header__btn--primary header__btn--full">Sign up</button>
       }
     </div>

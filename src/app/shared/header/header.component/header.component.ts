@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {Store} from '@ngrx/store';
-import {UiActions} from '../../../core/ui/+state/ui.actions';
+import {UiActions} from '../../../core/ui/modal/+state/ui.actions';
 import {selectIsLoggedIn} from '../../../core/auth/+state/auth.selectors';
 import {AuthActions} from '../../../core/auth/+state/auth.actions';
 

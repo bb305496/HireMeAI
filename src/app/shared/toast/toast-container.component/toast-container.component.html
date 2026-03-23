@@ -1,0 +1,8 @@
+<div class="toast-container">
+  @for (toast of toastService.toasts(); track toast.id) {
+    <app-toast-item
+      [toast]="toast"
+      (dismissed)="toastService.dismiss($event)"
+    />
+  }
+</div>

@@ -4,9 +4,10 @@ import {AnalyzerFormComponent} from '../../analyzer/analyzer-form.component/anal
 import {HomeComponent} from '../../home/home.component/home.component';
 import {FooterComponent} from '../../../shared/footer/footer.component/footer.component';
 import {Store} from '@ngrx/store';
-import {selectIsLoginOpen, selectIsRegisterOpen} from '../../../core/ui/+state/ui.selectors';
+import {selectIsLoginOpen, selectIsRegisterOpen} from '../../../core/ui/modal/+state/ui.selectors';
 import {RegisterModalComponent} from '../../../shared/register/register-modal.component/register-modal.component';
 import {LoginModalComponent} from '../../../shared/login/login-modal.component/login-modal.component';
+import {ToastContainerComponent} from '../../../shared/toast/toast-container.component/toast-container.component';
 
 @Component({
   selector: 'app-hire-me',
@@ -16,7 +17,8 @@ import {LoginModalComponent} from '../../../shared/login/login-modal.component/l
     HomeComponent,
     FooterComponent,
     RegisterModalComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    ToastContainerComponent
   ],
   templateUrl: './hire-me.component.html',
   styleUrl: './hire-me.component.scss',

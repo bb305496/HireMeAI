@@ -12,7 +12,8 @@ import {ActionReducer, provideStore, Store} from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { authReducer } from './core/auth/+state/auth.reducer';
 import { AuthEffects } from './core/auth/+state/auth.effects';
-import { uiReducer } from './core/ui/+state/ui.reducer';
+import * as ToastEffects from './core/ui/toast/+state/toast.effects';
+import { uiReducer } from './core/ui/modal/+state/ui.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import {AuthActions} from './core/auth/+state/auth.actions';
 
@@ -58,7 +59,7 @@ export const appConfig: ApplicationConfig = {
       metaReducers: [localStorageSyncReducer]
     }
       ),
-    provideEffects([AuthEffects]),
+    provideEffects([AuthEffects, ToastEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideAppInitializer(() => {
       const store = inject(Store);
