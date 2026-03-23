@@ -15,12 +15,24 @@ export class AuthEffects {
       ofType(AuthActions.register),
       switchMap(({ name, email, password }) =>
         this.authService.register({ name, email, password }).pipe(
-          map(({ token }) => AuthActions.registerSuccess({ token, name })),
+          map(({ name }) => AuthActions.registerSuccess({ name })),
           catchError((err) =>
             of(AuthActions.registerFailure({
               error: err?.error?.message ?? 'Unable to register',
             }))
           )
+        )
+      )
+    )
+  );
+
+  logout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.logout),
+      switchMap(() =>
+        this.authService.logout().pipe(
+          map(() => AuthActions.logoutSuccess()),
+          catchError(() => of(AuthActions.logoutFailure({ error: 'Logout failed' })))
         )
       )
     )

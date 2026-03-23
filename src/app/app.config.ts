@@ -3,12 +3,37 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-import { provideStore } from '@ngrx/store';
+import {ActionReducer, provideStore} from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { authReducer } from './core/auth/+state/auth-reducer';
 import { AuthEffects } from './core/auth/+state/auth-effects';
 import { uiReducer } from './core/ui/+state/ui-reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return (state, action) => {
+    const nextState = reducer(state, action);
+
+    if (nextState.auth?.name) {
+      localStorage.setItem('name', nextState.auth.name);
+    } else {
+      localStorage.removeItem('name');
+    }
+
+    return nextState;
+  };
+}
+
+export function getInitialState() {
+  return {
+    auth: {
+      name:    localStorage.getItem('name'),
+      loading: false,
+      error:   null,
+    }
+  };
+}
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,7 +43,12 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       auth: authReducer,
       ui: uiReducer,
-    }),
+    },
+    {
+      initialState: getInitialState(),
+      metaReducers: [localStorageSyncReducer]
+    }
+      ),
     provideEffects([AuthEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
