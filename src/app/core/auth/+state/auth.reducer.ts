@@ -60,4 +60,8 @@ export const authReducer = createReducer(
     localStorage.removeItem('name');
     return initialAuthState;
   }),
+  on(AuthActions.clearAuthError, (state) => ({
+    ...state,
+    error: null,
+  })),
 );

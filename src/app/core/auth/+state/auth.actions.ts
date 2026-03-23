@@ -19,5 +19,7 @@ export const AuthActions = createActionGroup({
     'Check Session':         emptyProps(),
     'Check Session Success': props<{ name: string }>(),
     'Check Session Failure': emptyProps(),
+
+    'Clear Auth Error': emptyProps(),
   }
 });

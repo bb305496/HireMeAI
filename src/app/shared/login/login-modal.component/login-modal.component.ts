@@ -35,6 +35,7 @@ export class LoginModalComponent {
   }
 
   switchToRegister(): void {
+    this.store.dispatch(AuthActions.clearAuthError());
     this.store.dispatch(UiActions.openModal({ modal: 'register'}));
   }
 
