@@ -5,9 +5,9 @@ import {
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {Store} from '@ngrx/store';
-import {UiActions} from '../../../core/ui/+state/ui-actions';
-import {selectIsLoggedIn} from '../../../core/auth/+state/auth-selectors';
-import {AuthActions} from '../../../core/auth/+state/auth-actions';
+import {UiActions} from '../../../core/ui/+state/ui.actions';
+import {selectIsLoggedIn} from '../../../core/auth/+state/auth.selectors';
+import {AuthActions} from '../../../core/auth/+state/auth.actions';
 
 interface NavLink {
   label: string;
@@ -16,10 +16,10 @@ interface NavLink {
 }
 
 @Component({
-  selector: 'app-header-component',
+  selector: 'app-header',
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './header-component.html',
-  styleUrl: './header-component.scss',
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
@@ -46,6 +46,10 @@ export class HeaderComponent {
 
   openRegister(): void {
     this.store.dispatch(UiActions.openModal({ modal: 'register' }));
+  }
+
+  openLogin(): void {
+    this.store.dispatch(UiActions.openModal({ modal: 'login' }));
   }
 
   logout(): void {

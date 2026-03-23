@@ -1,0 +1,75 @@
+<div class="backdrop" (click)="close()">
+  <div class="modal" (click)="$event.stopPropagation()">
+
+    <button class="modal__close" (click)="close()">✕</button>
+
+    <div class="modal__header">
+      <h2 class="modal__title">Welcome back</h2>
+      <p class="modal__subtitle">
+        Sign in to <span class="modal__subtitle--white">HireMe</span><span class="modal__subtitle--blue">AI</span>
+      </p>
+    </div>
+
+    @if (error()) {
+      <div class="modal__alert">⚠ {{ error() }}</div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+      <div class="field" [class.field--error]="f['email'].invalid && f['email'].touched">
+        <label class="field__label" for="email">Email</label>
+        <input
+          class="field__input"
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="hiremeai@example.com"
+          autocomplete="email"
+        />
+        @if (f['email'].errors?.['required'] && f['email'].touched) {
+          <span class="field__error">Email is required</span>
+        }
+        @if (f['email'].errors?.['email'] && f['email'].touched) {
+          <span class="field__error">Invalid email format</span>
+        }
+      </div>
+
+      <div class="field" [class.field--error]="f['password'].invalid && f['password'].touched">
+        <label class="field__label" for="password">Password</label>
+        <input
+          class="field__input"
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Your password"
+          autocomplete="current-password"
+        />
+        @if (f['password'].errors?.['required'] && f['password'].touched) {
+          <span class="field__error">Password is required</span>
+        }
+        @if (f['password'].errors?.['minlength'] && f['password'].touched) {
+          <span class="field__error">Min. 6 characters</span>
+        }
+      </div>
+
+      <button
+        type="submit"
+        class="modal__btn"
+        [disabled]="loading()"
+      >
+        @if (loading()) {
+          <span class="modal__spinner"></span> Signing in...
+        } @else {
+          Log in
+        }
+      </button>
+
+    </form>
+
+    <p class="modal__footer">
+      Don't have an account?
+      <button class="modal__link" (click)="switchToRegister()">Sign up</button>
+    </p>
+
+  </div>
+</div>

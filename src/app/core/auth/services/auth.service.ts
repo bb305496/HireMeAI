@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiConfigService } from '../../services/api-config-service';
+import { ApiConfigService } from '../../services/api-config.service';
 import {AuthResponse, LoginRequest, RegisterRequest} from '../model/auth.model';
 
 @Injectable({
@@ -31,6 +31,13 @@ export class AuthService {
     return this.http.post<void>(
       `${this.apiConfig.baseUrl}/auth/logout`,
       {},
+      { withCredentials: true }
+    );
+  }
+
+  me(): Observable<{ name: string }> {
+    return this.http.get<{ name: string }>(
+      `${this.apiConfig.baseUrl}/auth/me`,
       { withCredentials: true }
     );
   }

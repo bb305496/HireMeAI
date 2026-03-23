@@ -1,0 +1,18 @@
+<div class="app-wrapper">
+  <app-header/>
+
+  <main class="main-content">
+    <app-home/>
+    <app-analyzer-form/>
+  </main>
+
+  <app-footer/>
+
+  @if (isRegisterOpen()){
+    <app-register-modal/>
+  }
+
+  @if (isLoginOpen()) {
+    <app-login-modal/>
+  }
+</div>
