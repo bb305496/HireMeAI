@@ -26,6 +26,24 @@ export class AuthEffects {
     )
   );
 
+  login$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.login),
+      switchMap(({ email, password }) =>
+        this.authService.login({ email, password }).pipe(
+          map(({ name }) => AuthActions.loginSuccess({ name })),
+          catchError((err) =>
+            of(AuthActions.loginFailure({
+              error: err?.error?.message ?? 'Unable to login',
+            }))
+          )
+        )
+      )
+    )
+  );
+
+
+
   logout$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.logout),

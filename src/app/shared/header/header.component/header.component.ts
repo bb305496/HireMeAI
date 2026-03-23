@@ -16,7 +16,7 @@ interface NavLink {
 }
 
 @Component({
-  selector: 'app-header.component',
+  selector: 'app-header',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

@@ -8,7 +8,7 @@ import {selectIsRegisterOpen} from '../../../core/ui/+state/ui.selectors';
 import {RegisterModalComponent} from '../../../shared/register/register-modal.component/register-modal.component';
 
 @Component({
-  selector: 'app-hire-me.component',
+  selector: 'app-hire-me',
   imports: [
     HeaderComponent,
     AnalyzerFormComponent,

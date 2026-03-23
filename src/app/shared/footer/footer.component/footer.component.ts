@@ -7,7 +7,7 @@ interface NavLink {
 }
 
 @Component({
-  selector: 'app-footer.component',
+  selector: 'app-footer',
   imports: [],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',

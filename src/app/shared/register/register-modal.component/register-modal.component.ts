@@ -6,7 +6,7 @@ import {AuthActions} from '../../../core/auth/+state/auth.actions';
 import {UiActions} from '../../../core/ui/+state/ui.actions';
 
 @Component({
-  selector: 'app-register-modal.component',
+  selector: 'app-register-modal',
   imports: [
     ReactiveFormsModule
   ],
