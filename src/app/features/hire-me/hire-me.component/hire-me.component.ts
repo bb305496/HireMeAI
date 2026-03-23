@@ -4,8 +4,9 @@ import {AnalyzerFormComponent} from '../../analyzer/analyzer-form.component/anal
 import {HomeComponent} from '../../home/home.component/home.component';
 import {FooterComponent} from '../../../shared/footer/footer.component/footer.component';
 import {Store} from '@ngrx/store';
-import {selectIsRegisterOpen} from '../../../core/ui/+state/ui.selectors';
+import {selectIsLoginOpen, selectIsRegisterOpen} from '../../../core/ui/+state/ui.selectors';
 import {RegisterModalComponent} from '../../../shared/register/register-modal.component/register-modal.component';
+import {LoginModalComponent} from '../../../shared/login/login-modal.component/login-modal.component';
 
 @Component({
   selector: 'app-hire-me',
@@ -14,7 +15,8 @@ import {RegisterModalComponent} from '../../../shared/register/register-modal.co
     AnalyzerFormComponent,
     HomeComponent,
     FooterComponent,
-    RegisterModalComponent
+    RegisterModalComponent,
+    LoginModalComponent
   ],
   templateUrl: './hire-me.component.html',
   styleUrl: './hire-me.component.scss',
@@ -24,5 +26,7 @@ export class HireMeComponent {
   store = inject(Store);
 
   isRegisterOpen = this.store.selectSignal(selectIsRegisterOpen);
+
+  isLoginOpen = this.store.selectSignal(selectIsLoginOpen);
 
 }

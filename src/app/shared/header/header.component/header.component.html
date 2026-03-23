@@ -27,7 +27,7 @@
         <span class="header__btn header__btn--primary">My Account</span>
         <button (click)="logout()" class="header__btn header__btn--ghost">Log out</button>
       } @else {
-        <a routerLink="/login" class="header__btn header__btn--ghost">Log in</a>
+        <a (click)="openLogin()" class="header__btn header__btn--ghost">Log in</a>
         <button (click)="openRegister()" class="header__btn header__btn--primary">Sign up</button>
       }
     </div>

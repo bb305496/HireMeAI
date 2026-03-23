@@ -48,6 +48,10 @@ export class HeaderComponent {
     this.store.dispatch(UiActions.openModal({ modal: 'register' }));
   }
 
+  openLogin(): void {
+    this.store.dispatch(UiActions.openModal({ modal: 'login' }));
+  }
+
   logout(): void {
     this.store.dispatch(AuthActions.logout());
   }

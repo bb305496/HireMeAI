@@ -27,4 +27,8 @@ export const uiReducer = createReducer(
     ...state,
     activeModal: null,
   })),
+  on(AuthActions.loginSuccess, (state) => ({
+    ...state,
+    activeModal: null,
+  })),
 );
