@@ -7,5 +7,3 @@
    docker network create app_default
 6. SPA
 7. HTTPS
-
-dsa

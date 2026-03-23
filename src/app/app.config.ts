@@ -5,9 +5,9 @@ import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { authReducer } from './store/auth/auth-reducer';
-import { AuthEffects } from './store/auth/auth-effects';
-import { uiReducer } from './store/ui/ui-reducer';
+import { authReducer } from './core/auth/+state/auth-reducer';
+import { AuthEffects } from './core/auth/+state/auth-effects';
+import { uiReducer } from './core/ui/+state/ui-reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 export const appConfig: ApplicationConfig = {

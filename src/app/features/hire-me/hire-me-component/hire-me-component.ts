@@ -4,7 +4,7 @@ import {AnalyzerFormComponent} from '../../analyzer/analyzer-form-component/anal
 import {HomeComponent} from '../../home/home-component/home-component';
 import {FooterComponent} from '../../../shared/footer/footer-component/footer-component';
 import {Store} from '@ngrx/store';
-import {selectIsRegisterOpen} from '../../../store/ui/ui-selectors';
+import {selectIsRegisterOpen} from '../../../core/ui/+state/ui-selectors';
 import {RegisterModalComponent} from '../../../shared/register/register-modal-component/register-modal-component';
 
 @Component({

@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { AuthActions } from './auth-actions';
-import { AuthService } from '../../core/services/auth-service';
+import { AuthService } from '../services/auth-service';
 
 @Injectable()
 export class AuthEffects {
@@ -13,9 +13,9 @@ export class AuthEffects {
   register$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.register),
-      switchMap(({ email, password }) =>
-        this.authService.register({ email, password }).pipe(
-          map(({ token }) => AuthActions.registerSuccess({ token })),
+      switchMap(({ name, email, password }) =>
+        this.authService.register({ name, email, password }).pipe(
+          map(({ token }) => AuthActions.registerSuccess({ token, name })),
           catchError((err) =>
             of(AuthActions.registerFailure({
               error: err?.error?.message ?? 'Unable to register',

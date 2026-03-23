@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {selectError, selectLoading} from '../../../store/auth/auth-selectors';
-import {AuthActions} from '../../../store/auth/auth-actions';
-import {UiActions} from '../../../store/ui/ui-actions';
+import {selectError, selectLoading} from '../../../core/auth/+state/auth-selectors';
+import {AuthActions} from '../../../core/auth/+state/auth-actions';
+import {UiActions} from '../../../core/ui/+state/ui-actions';
 
 @Component({
   selector: 'app-register-modal-component',
@@ -22,6 +22,7 @@ export class RegisterModalComponent {
   error   = this.store.selectSignal(selectError);
 
   form = this.fb.group({
+    name:     ['', [Validators.required]],
     email:    ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
@@ -30,8 +31,8 @@ export class RegisterModalComponent {
 
   onSubmit(): void {
     if (this.form.invalid) { this.form.markAllAsTouched(); return; }
-    const { email, password } = this.form.value;
-    this.store.dispatch(AuthActions.register({ email: email!, password: password! }));
+    const { name, email, password } = this.form.value;
+    this.store.dispatch(AuthActions.register({ name: name!, email: email!, password: password! }));
   }
 
   switchToLogin(): void {

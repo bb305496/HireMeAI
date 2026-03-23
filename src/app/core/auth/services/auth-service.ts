@@ -1,21 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiConfigService } from './api-config-service';
-
-export interface RegisterRequest {
-  email: string;
-  password: string;
-}
-
-export interface LoginRequest {
-  email: string;
-  password: string;
-}
-
-export interface AuthResponse {
-  token: string;
-}
+import { ApiConfigService } from '../../services/api-config-service';
+import {AuthResponse, LoginRequest, RegisterRequest} from '../model/auth.model';
 
 @Injectable({
   providedIn: 'root'
