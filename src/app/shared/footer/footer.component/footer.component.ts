@@ -15,10 +15,9 @@ import {RouterLink} from '@angular/router';
 export class FooterComponent {
   readonly appVersion = environment.version;
   readonly currentYear = new Date().getFullYear();
-  // TODO add links
-  readonly contactEmail = 'mail@mail.com';
-  readonly githubUrl = 'toDO';
-  readonly linkedinUrl = 'toDO';
+  readonly contactEmail = 'barb305496@gmail.com';
+  readonly githubUrl = 'https://github.com/bb305496';
+  readonly linkedinUrl = 'https://www.linkedin.com/in/biebar/';
 
   // TODO add links
   readonly productLinks: NavLink[] = [

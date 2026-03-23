@@ -9,6 +9,9 @@ import {UiActions} from '../../../core/ui/modal/+state/ui.actions';
 import {selectIsLoggedIn} from '../../../core/auth/+state/auth.selectors';
 import {AuthActions} from '../../../core/auth/+state/auth.actions';
 import {NavLink} from '../../../core/models/models';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {distinctUntilChanged, fromEvent} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +23,6 @@ import {NavLink} from '../../../core/models/models';
 export class HeaderComponent {
 
   store = inject(Store);
-  private cdr = inject(ChangeDetectorRef);
 
   isLoggedIn = this.store.selectSignal(selectIsLoggedIn);
 
@@ -29,14 +31,14 @@ export class HeaderComponent {
     { label: 'CV Analysis', route: '/analyzer' },
   ];
 
-  isScrolled = false;
   mobileOpen = false;
 
-  @HostListener('window:scroll')
-  onScroll(): void {
-    this.isScrolled = window.scrollY > 12;
-    this.cdr.markForCheck();
-  }
+  isScrolled = toSignal(
+    fromEvent(window, 'scroll').pipe(
+      map(() => window.scrollY > 12),
+      distinctUntilChanged()
+    ), { initialValue: false }
+  );
 
   openRegister(): void {
     this.store.dispatch(UiActions.openModal({ modal: 'register' }));
