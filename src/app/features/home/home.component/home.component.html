@@ -1,1 +1,67 @@
-<p>home-component works!</p>
+<section class="hero">
+  <div class="hero__container">
+    <div class="hero__content">
+      <div class="hero__badge">AI-Powered CV Analysis</div>
+      <h1 class="hero__title">
+        Land your dream job with a
+        <span class="hero__title--accent">perfectly tailored</span> CV
+      </h1>
+      <p class="hero__desc">
+        Upload your CV and a job offer - our AI will analyze the match, highlight gaps,
+        and tell you exactly what skills to learn to get that role.
+      </p>
+      <div class="hero__actions">
+        <a routerLink="/analyzer" class="hero__btn hero__btn--primary">
+          Analyze your CV
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps" id="how-it-works">
+  <div class="steps__container">
+    <h2 class="steps__title">How it works</h2>
+    <p class="steps__subtitle">Three steps to a job-ready CV</p>
+    <div class="steps__grid">
+      <div class="steps__item">
+        <div class="steps__icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="steps__number">01</div>
+        <h3 class="steps__item-title">Upload your CV</h3>
+        <p class="steps__item-desc">Upload a PDF. Add the job offer URL or paste the description.</p>
+      </div>
+      <div class="steps__connector"></div>
+      <div class="steps__item">
+        <div class="steps__icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#3b82f6" stroke-width="1.8"/>
+            <path d="M12 8v4l3 3" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="steps__number">02</div>
+        <h3 class="steps__item-title">AI analyzes the match</h3>
+        <p class="steps__item-desc">Model compares your experience against the job requirements and scores the fit.</p>
+      </div>
+      <div class="steps__connector"></div>
+      <div class="steps__item">
+        <div class="steps__icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M22 4L12 14.01l-3-3" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="steps__number">03</div>
+        <h3 class="steps__item-title">Get your action plan</h3>
+        <p class="steps__item-desc">Receive specific CV improvements and a personalized learning roadmap for missing skills.</p>
+      </div>
+    </div>
+  </div>
+</section>

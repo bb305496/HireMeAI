@@ -22,7 +22,7 @@ export class FooterComponent {
 
   // TODO add links
   readonly productLinks: NavLink[] = [
-    { label: 'How does it work?', route: '/' },
+    { label: 'How  it works?', route: '/', fragment: 'how-it-works' },
     { label: 'FAQ', route: '/' },
     { label: 'Changelog', route: '/' },
   ];
