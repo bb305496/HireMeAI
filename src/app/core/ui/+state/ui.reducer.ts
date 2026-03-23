@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { UiActions, ModalType } from './ui-actions';
-import { AuthActions } from '../../auth/+state/auth-actions';
+import { UiActions, ModalType } from './ui.actions';
+import { AuthActions } from '../../auth/+state/auth.actions';
 
 export interface UiState {
   activeModal: ModalType;

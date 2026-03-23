@@ -7,10 +7,10 @@ interface NavLink {
 }
 
 @Component({
-  selector: 'app-footer-component',
+  selector: 'app-footer.component',
   imports: [],
-  templateUrl: './footer-component.html',
-  styleUrl: './footer-component.scss',
+  templateUrl: './footer.component.html',
+  styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {

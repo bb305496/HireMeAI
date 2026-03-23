@@ -1,17 +1,17 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {selectError, selectLoading} from '../../../core/auth/+state/auth-selectors';
-import {AuthActions} from '../../../core/auth/+state/auth-actions';
-import {UiActions} from '../../../core/ui/+state/ui-actions';
+import {selectError, selectLoading} from '../../../core/auth/+state/auth.selectors';
+import {AuthActions} from '../../../core/auth/+state/auth.actions';
+import {UiActions} from '../../../core/ui/+state/ui.actions';
 
 @Component({
-  selector: 'app-register-modal-component',
+  selector: 'app-register-modal.component',
   imports: [
     ReactiveFormsModule
   ],
-  templateUrl: './register-modal-component.html',
-  styleUrl: './register-modal-component.scss',
+  templateUrl: './register-modal.component.html',
+  styleUrl: './register-modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterModalComponent {

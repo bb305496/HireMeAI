@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { AuthActions } from './auth-actions';
+import { AuthActions } from './auth.actions';
 
 export interface AuthState {
   name: string | null;

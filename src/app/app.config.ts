@@ -5,9 +5,9 @@ import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import {ActionReducer, provideStore} from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { authReducer } from './core/auth/+state/auth-reducer';
-import { AuthEffects } from './core/auth/+state/auth-effects';
-import { uiReducer } from './core/ui/+state/ui-reducer';
+import { authReducer } from './core/auth/+state/auth.reducer';
+import { AuthEffects } from './core/auth/+state/auth.effects';
+import { uiReducer } from './core/ui/+state/ui.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
