@@ -8,12 +8,7 @@ import {Store} from '@ngrx/store';
 import {UiActions} from '../../../core/ui/modal/+state/ui.actions';
 import {selectIsLoggedIn} from '../../../core/auth/+state/auth.selectors';
 import {AuthActions} from '../../../core/auth/+state/auth.actions';
-
-interface NavLink {
-  label: string;
-  route: string;
-  exact?: boolean;
-}
+import {NavLink} from '../../../core/models/models';
 
 @Component({
   selector: 'app-header',
@@ -23,16 +18,15 @@ interface NavLink {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  constructor(private cdr: ChangeDetectorRef) {}
 
   store = inject(Store);
+  private cdr = inject(ChangeDetectorRef);
 
   isLoggedIn = this.store.selectSignal(selectIsLoggedIn);
 
   readonly navLinks: NavLink[] = [
     { label: 'Home', route: '/', exact: true },
-    { label: 'How it works', route: '/how-it-works' },
-    { label: 'CV Analysis', route: '/analysis' },
+    { label: 'CV Analysis', route: '/analyzer' },
   ];
 
   isScrolled = false;

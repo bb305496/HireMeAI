@@ -14,7 +14,7 @@ export class ToastService {
   readonly toasts = this._toasts.asReadonly();
   private nextId = 0;
 
-  show(message: string, type: ToastType = 'info', duration = 3500) {
+  show(message: string, type: ToastType, duration = 3500) {
     const id = this.nextId++;
     this._toasts.update(t => [...t, { message, type, id }]);
     setTimeout(() => this.dismiss(id), duration);

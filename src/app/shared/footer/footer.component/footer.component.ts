@@ -1,14 +1,13 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {environment} from "../../../../environments/environment";
-
-interface NavLink {
-  label: string;
-  href: string;
-}
+import {NavLink} from '../../../core/models/models';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,8 +22,8 @@ export class FooterComponent {
 
   // TODO add links
   readonly productLinks: NavLink[] = [
-    { label: 'How does it work?', href: '#' },
-    { label: 'FAQ', href: '#' },
-    { label: 'Changelog', href: '#' },
+    { label: 'How does it work?', route: '/' },
+    { label: 'FAQ', route: '/' },
+    { label: 'Changelog', route: '/' },
   ];
 }
