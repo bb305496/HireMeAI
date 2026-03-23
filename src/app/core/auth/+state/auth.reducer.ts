@@ -47,6 +47,14 @@ export const authReducer = createReducer(
     loading: false,
     error,
   })),
+  on(AuthActions.checkSessionSuccess, (state, { name }) => ({
+    ...state,
+    name,
+  })),
+  on(AuthActions.checkSessionFailure, (state) => ({
+    ...state,
+    name: null,
+  })),
 
   on(AuthActions.logoutSuccess, () => {
     localStorage.removeItem('name');

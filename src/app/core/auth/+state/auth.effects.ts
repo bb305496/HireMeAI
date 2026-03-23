@@ -42,8 +42,6 @@ export class AuthEffects {
     )
   );
 
-
-
   logout$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.logout),
@@ -51,6 +49,18 @@ export class AuthEffects {
         this.authService.logout().pipe(
           map(() => AuthActions.logoutSuccess()),
           catchError(() => of(AuthActions.logoutFailure({ error: 'Logout failed' })))
+        )
+      )
+    )
+  );
+
+  checkSession$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.checkSession),
+      switchMap(() =>
+        this.authService.me().pipe(
+          map(({ name }) => AuthActions.checkSessionSuccess({ name })),
+          catchError(() => of(AuthActions.checkSessionFailure()))
         )
       )
     )

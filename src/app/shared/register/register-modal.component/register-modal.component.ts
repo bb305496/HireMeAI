@@ -36,7 +36,7 @@ export class RegisterModalComponent {
   }
 
   switchToLogin(): void {
-    //TODO
+    this.store.dispatch(UiActions.openModal({ modal: 'login'}));
   }
 
   close(): void {

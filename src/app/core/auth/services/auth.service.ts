@@ -34,4 +34,11 @@ export class AuthService {
       { withCredentials: true }
     );
   }
+
+  me(): Observable<{ name: string }> {
+    return this.http.get<{ name: string }>(
+      `${this.apiConfig.baseUrl}/auth/me`,
+      { withCredentials: true }
+    );
+  }
 }

@@ -1,14 +1,20 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, isDevMode } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  isDevMode,
+  provideAppInitializer, inject
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-import {ActionReducer, provideStore} from '@ngrx/store';
+import {ActionReducer, provideStore, Store} from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { authReducer } from './core/auth/+state/auth.reducer';
 import { AuthEffects } from './core/auth/+state/auth.effects';
 import { uiReducer } from './core/ui/+state/ui.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import {AuthActions} from './core/auth/+state/auth.actions';
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return (state, action) => {
@@ -34,6 +40,9 @@ export function getInitialState() {
   };
 }
 
+export function initializeApp(store: Store) {
+  return () => store.dispatch(AuthActions.checkSession());
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -51,5 +60,9 @@ export const appConfig: ApplicationConfig = {
       ),
     provideEffects([AuthEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideAppInitializer(() => {
+      const store = inject(Store);
+      store.dispatch(AuthActions.checkSession());
+    })
   ],
 };
