@@ -64,8 +64,8 @@
     </nav>
     <div class="header__mobile-actions">
       @if (isLoggedIn()) {
-        <a routerLink="account" class="header__btn header__btn--primary">My Account</a>
-        <button (click)="logout()" class="header__btn header__btn--ghost">Log out</button>
+        <a (click)="closeMobile()" routerLink="account" class="header__btn header__btn--primary">My Account</a>
+        <button (click)="logout(); closeMobile()" class="header__btn header__btn--ghost">Log out</button>
       } @else {
         <a (click)="openLogin(); closeMobile()" class="header__btn header__btn--ghost header__btn--full" >Log in</a>
         <button (click)="openRegister(); closeMobile()" class="header__btn header__btn--primary header__btn--full">Sign up</button>
