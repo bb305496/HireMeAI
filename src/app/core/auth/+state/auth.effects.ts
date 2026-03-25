@@ -69,4 +69,16 @@ export class AuthEffects {
     )
   );
 
+  updateLocation$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.updateLocation),
+      switchMap(({ location }) =>
+        this.authService.updateLocation(location).pipe(
+          map(({ name, email, location }) => AuthActions.updateLocationSuccess({ name, email, location })),
+          catchError((error) => of(AuthActions.updateLocationFailure({ error: error.message })))
+        )
+      )
+    );
+  });
+
 }

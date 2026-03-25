@@ -4,6 +4,9 @@ import { AuthState } from './auth.reducer';
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
 export const selectName      = createSelector(selectAuthState, (state) => state.name);
+export const selectEmail = createSelector(selectAuthState, (state) => state.email);
+export const selectLocation = createSelector(selectAuthState, (state) => state.location);
 export const selectLoading = createSelector(selectAuthState, (state) => state.loading);
 export const selectError   = createSelector(selectAuthState, (state) => state.error);
 export const selectIsLoggedIn = createSelector(selectName, (name) => !!name);
+

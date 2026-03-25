@@ -41,4 +41,12 @@ export class AuthService {
       { withCredentials: true }
     );
   }
+
+  updateLocation(location: string): Observable<AuthResponse> {
+    return this.http.patch<AuthResponse>(
+      `${this.apiConfig.baseUrl}/auth/location`,
+      { location },
+      { withCredentials: true },
+    );
+  }
 }

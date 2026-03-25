@@ -25,7 +25,7 @@ export const loginToast$ = createEffect(
   { functional: true, dispatch: false }
 );
 
-export const registerSuccessToast$ = createEffect(
+export const registerToast$ = createEffect(
   () => {
     const actions$ = inject(Actions);
     const toast = inject(ToastService);
@@ -47,7 +47,7 @@ export const registerSuccessToast$ = createEffect(
   { functional: true, dispatch: false }
 );
 
-export const logOutSuccessToast$ = createEffect(
+export const logOutToast$ = createEffect(
   () => {
     const actions$ = inject(Actions);
     const toast = inject(ToastService);
@@ -67,4 +67,27 @@ export const logOutSuccessToast$ = createEffect(
     );
   },
   { functional: true, dispatch: false }
-)
+);
+
+export const changeLocationToast$ = createEffect(
+  () => {
+    const actions$ = inject(Actions);
+    const toast = inject(ToastService);
+    return actions$.pipe(
+      ofType(
+        AuthActions.updateLocationSuccess,
+        AuthActions.updateLocationFailure,
+      ),
+      tap((action) => {
+        switch (action.type) {
+          case AuthActions.updateLocationSuccess.type:
+            toast.show('Location updated successfully', 'success'); break;
+          case AuthActions.updateLocationFailure.type:
+            toast.show('Unable to update location', 'error'); break;
+        }
+      })
+    );
+  },
+  { functional: true, dispatch: false }
+);
+

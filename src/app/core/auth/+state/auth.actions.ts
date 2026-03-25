@@ -20,6 +20,10 @@ export const AuthActions = createActionGroup({
     'Check Session Success': props<AuthResponse>(),
     'Check Session Failure': emptyProps(),
 
+    'Update Location': props<{ location: string }>(),
+    'Update Location Success': props<AuthResponse>(),
+    'Update Location Failure': props<{ error: string }>(),
+
     'Clear Auth Error': emptyProps(),
   }
 });
