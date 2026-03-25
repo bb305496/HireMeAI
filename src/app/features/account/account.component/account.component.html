@@ -3,8 +3,8 @@
 
     <div class="card profile">
       <div class="profile__avatar">{{ profileAvatar }}</div>
-      <h2 class="profile__name">{{ userName() }}</h2>
-      <p class="profile__email">{{ userEmail() }}</p>
+      <h2 class="profile__name" [title]="userName()">{{ userName() }}</h2>
+      <p class="profile__email" [title]="userEmail()">{{ userEmail() }}</p>
 
       <div class="profile__location">
         <svg class="profile__location-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
