@@ -17,7 +17,7 @@ export class AuthEffects {
       ofType(AuthActions.register),
       switchMap(({ name, email, password }) =>
         this.authService.register({ name, email, password }).pipe(
-          map(({ name }) => AuthActions.registerSuccess({ name })),
+          map(({ name, email, location }) => AuthActions.registerSuccess({ name, email, location })),
           catchError((err) =>
             of(AuthActions.registerFailure({
               error: err?.error?.message ?? 'Unable to register',
@@ -33,7 +33,7 @@ export class AuthEffects {
       ofType(AuthActions.login),
       switchMap(({ email, password }) =>
         this.authService.login({ email, password }).pipe(
-          map(({ name }) => AuthActions.loginSuccess({ name })),
+          map(({ name, email, location }) => AuthActions.loginSuccess({ name, email, location })),
           catchError((err) =>
             of(AuthActions.loginFailure({
               error: err?.error?.message ?? 'Unable to login',
@@ -62,7 +62,7 @@ export class AuthEffects {
       ofType(AuthActions.checkSession),
       switchMap(() =>
         this.authService.me().pipe(
-          map(({ name }) => AuthActions.checkSessionSuccess({ name })),
+          map(({ name, email, location }) => AuthActions.checkSessionSuccess({ name, email, location })),
           catchError(() => of(AuthActions.checkSessionFailure()))
         )
       )

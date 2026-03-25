@@ -11,4 +11,6 @@ export interface LoginRequest {
 
 export interface AuthResponse {
   name: string;
+  email: string;
+  location: string | null;
 }

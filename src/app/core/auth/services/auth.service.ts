@@ -8,7 +8,7 @@ import {AuthResponse, LoginRequest, RegisterRequest} from '../model/auth.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private http      = inject(HttpClient);
+  private http = inject(HttpClient);
   private apiConfig = inject(ApiConfigService);
 
   register(data: RegisterRequest): Observable<AuthResponse> {
@@ -35,8 +35,8 @@ export class AuthService {
     );
   }
 
-  me(): Observable<{ name: string }> {
-    return this.http.get<{ name: string }>(
+  me(): Observable<AuthResponse> {
+    return this.http.get<AuthResponse>(
       `${this.apiConfig.baseUrl}/auth/me`,
       { withCredentials: true }
     );
