@@ -22,9 +22,9 @@ export class RegisterModalComponent {
   error   = this.store.selectSignal(selectError);
 
   form = this.fb.group({
-    name:     ['', [Validators.required]],
-    email:    ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    name:     ['', [Validators.required, Validators.maxLength(80)]],
+    email:    ['', [Validators.required, Validators.email, Validators.maxLength(80)]],
+    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
   });
 
   get f() { return this.form.controls; }

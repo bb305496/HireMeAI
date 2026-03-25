@@ -25,6 +25,7 @@
           formControlName="name"
           placeholder="Hire Meeee"
           autocomplete="name"
+          maxlength="80"
         />
         @if (f['name'].errors?.['required'] && f['name'].touched) {
           <span class="field__error">Name is required</span>
@@ -40,6 +41,7 @@
           formControlName="email"
           placeholder="hiremeai@example.com"
           autocomplete="email"
+          maxlength="80"
         />
         @if (f['email'].errors?.['required'] && f['email'].touched) {
           <span class="field__error">Email is required</span>
@@ -58,6 +60,7 @@
           formControlName="password"
           placeholder="Min. 6 characters"
           autocomplete="new-password"
+          maxlength="255"
         />
         @if (f['password'].errors?.['required'] && f['password'].touched) {
           <span class="field__error">Password is required</span>
