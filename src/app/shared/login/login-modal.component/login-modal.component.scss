@@ -1,3 +1,11 @@
+@use 'variables' as *;
+
+$bg-modal:      #0f1117;
+$bg-input:      #1a2235;
+$border-modal:  #1e2231;
+$border-input:  #1e2c45;
+$color-error:   #f87171;
+
 .backdrop {
   position: fixed;
   inset: 0;
@@ -15,20 +23,20 @@
   position: relative;
   width: 100%;
   max-width: 26rem;
-  background-color: #0f1117;
-  border: 1px solid #1e2231;
-  border-radius: 1rem;
+  background-color: $bg-modal;
+  border: 1px solid $border-modal;
+  border-radius: $radius-lg;
   padding: 2rem;
-  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-family: $font-sans;
   animation: slideUp 0.25s ease;
 
   &__close {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: #1a2235;
-    border: 1px solid #1e2c45;
-    color: #8896ae;
+    background: $bg-input;
+    border: 1px solid $border-input;
+    color: $text-muted;
     border-radius: 0.4rem;
     width: 2rem;
     height: 2rem;
@@ -37,8 +45,8 @@
     transition: color 0.15s ease, background-color 0.15s ease;
 
     &:hover {
-      color: #e2e8f0;
-      background-color: #1e2c45;
+      color: $text-secondary;
+      background-color: $border-input;
     }
   }
 
@@ -56,7 +64,7 @@
 
   &__subtitle {
     font-size: 0.9rem;
-    color: #8896ae;
+    color: $text-muted;
     margin: 0;
 
     &--white {
@@ -65,16 +73,16 @@
     }
 
     &--blue {
-      color: #3b82f6;
+      color: $blue;
       font-weight: 700;
     }
   }
 
   &__alert {
-    background-color: rgba(239, 68, 68, 0.1);
+    background-color: $red-muted;
     border: 1px solid rgba(239, 68, 68, 0.3);
-    color: #f87171;
-    border-radius: 0.5rem;
+    color: $color-error;
+    border-radius: $radius-sm;
     padding: 0.75rem 1rem;
     font-size: 0.875rem;
     margin-bottom: 1.25rem;
@@ -83,10 +91,10 @@
   &__btn {
     width: 100%;
     padding: 0.65rem 1rem;
-    background-color: #3b82f6;
-    border: 1px solid #3b82f6;
+    background-color: $blue;
+    border: 1px solid $blue;
     color: #ffffff;
-    border-radius: 0.5rem;
+    border-radius: $radius-sm;
     font-family: inherit;
     font-size: 0.95rem;
     font-weight: 500;
@@ -99,7 +107,7 @@
     transition: background-color 0.2s ease;
 
     &:hover:not(:disabled) {
-      background-color: #2563eb;
+      background-color: $blue-dark;
     }
 
     &:disabled {
@@ -122,13 +130,13 @@
     margin-top: 1.25rem;
     text-align: center;
     font-size: 0.875rem;
-    color: #8896ae;
+    color: $text-muted;
   }
 
   &__link {
     background: none;
     border: none;
-    color: #3b82f6;
+    color: $blue;
     font-family: inherit;
     font-size: inherit;
     cursor: pointer;
@@ -148,29 +156,29 @@
     display: block;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #8896ae;
+    color: $text-muted;
     margin-bottom: 0.4rem;
   }
 
   &__input {
     width: 100%;
     padding: 0.6rem 0.875rem;
-    background-color: #1a2235;
-    border: 1px solid #1e2c45;
-    border-radius: 0.5rem;
-    color: #e2e8f0;
+    background-color: $bg-input;
+    border: 1px solid $border-input;
+    border-radius: $radius-sm;
+    color: $text-secondary;
     font-family: inherit;
     font-size: 0.9rem;
     box-sizing: border-box;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
 
     &::placeholder {
-      color: #4a5568;
+      color: $text-dim;
     }
 
     &:focus {
       outline: none;
-      border-color: #3b82f6;
+      border-color: $blue;
       box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
     }
   }
@@ -178,7 +186,7 @@
   &__error {
     display: block;
     font-size: 0.8rem;
-    color: #f87171;
+    color: $color-error;
     margin-top: 0.3rem;
   }
 

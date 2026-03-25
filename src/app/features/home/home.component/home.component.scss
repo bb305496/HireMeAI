@@ -1,8 +1,10 @@
+@use 'variables' as *;
+
 .hero {
-  background-color: #080b12;
+  background-color: $bg-base;
   background-image:
     radial-gradient(ellipse 60% 50% at 70% 40%, rgba(59, 130, 246, 0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 20% 60%, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
+    radial-gradient(ellipse 40% 40% at 20% 60%, $indigo-subtle 0%, transparent 60%);
   padding: 6rem 2rem 5rem;
   overflow: hidden;
 }
@@ -30,34 +32,34 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  border-radius: 2rem;
+  color: $blue;
+  background: $blue-subtle;
+  border: 1px solid $blue-border;
+  border-radius: $radius-pill;
   margin-bottom: 1.5rem;
   animation: fadeSlideUp 0.7s ease 0.1s both;
 }
 
 .hero__title {
-  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-family: $font-sans;
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.03em;
-  color: #f1f5f9;
+  color: $text-primary;
   margin: 0 0 1.25rem;
   animation: fadeSlideUp 0.7s ease 0.15s both;
 }
 
 .hero__title--accent {
-  color: #3b82f6;
+  color: $blue;
   position: relative;
 }
 
 .hero__desc {
   font-size: 1.2rem;
   line-height: 1.7;
-  color: #7a8ba6;
+  color: $text-muted;
   max-width: 32rem;
   margin: 0 0 2rem;
   animation: fadeSlideUp 0.7s ease 0.2s both;
@@ -77,33 +79,33 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.65rem 1.5rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: $font-sans;
   font-size: 0.95rem;
   font-weight: 600;
-  border-radius: 0.6rem;
+  border-radius: $radius-md;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: $transition-base;
   border: none;
 }
 
 .hero__btn--primary {
   color: #fff;
-  background: #3b82f6;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  background: $blue;
+  box-shadow: 0 0 20px $blue-glow;
 
   &:hover {
-    background: #2563eb;
-    box-shadow: 0 0 28px rgba(59, 130, 246, 0.45);
+    background: $blue-dark;
+    box-shadow: 0 0 28px $blue-glow-hover;
     transform: translateY(-1px);
   }
 }
 
 .steps {
-  background-color: #0b0f1a;
+  background-color: $bg-surface;
   background-image: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
   padding: 5rem 2rem;
-  border-top: 1px solid #141b2d;
+  border-top: 1px solid $border;
 }
 
 .steps__container {
@@ -112,10 +114,10 @@
 }
 
 .steps__title {
-  font-family: 'DM Sans', sans-serif;
+  font-family: $font-sans;
   font-size: 2.2rem;
   font-weight: 700;
-  color: #f1f5f9;
+  color: $text-primary;
   text-align: center;
   margin: 0 0 0.5rem;
 }
@@ -123,7 +125,7 @@
 .steps__subtitle {
   font-size: 1.2rem;
   font-weight: 500;
-  color: #4a5a72;
+  color: $text-dim;
   text-align: center;
   margin: 0 0 3.5rem;
 }
@@ -156,18 +158,18 @@
 .steps__icon {
   width: 3rem;
   height: 3rem;
-  border-radius: 1rem;
-  background: rgba(59, 130, 246, 0.08);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: $radius-lg;
+  background: $blue-subtle;
+  border: 1px solid $blue-border;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
-  transition: all 0.2s ease;
+  transition: $transition-base;
 
   &:hover {
     background: rgba(59, 130, 246, 0.14);
-    border-color: rgba(59, 130, 246, 0.4);
+    border-color: $blue-border-hover;
     transform: translateY(-2px);
   }
 }
@@ -176,15 +178,15 @@
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #3b82f6;
+  color: $blue;
   margin-bottom: 0.5rem;
 }
 
 .steps__item-title {
-  font-family: 'DM Sans', sans-serif;
+  font-family: $font-sans;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: $text-secondary;
   margin: 0 0 0.6rem;
 }
 
@@ -192,7 +194,7 @@
   font-size: 1.2rem;
   font-weight: 500;
   line-height: 1.65;
-  color: #4a5a72;
+  color: $text-dim;
   margin: 0;
 }
 
@@ -200,18 +202,13 @@
   flex: 0 0 auto;
   width: 60px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #1e2c45, transparent);
+  background: linear-gradient(90deg, transparent, $border-strong, transparent);
   margin-top: 30px;
 
   @media (max-width: 48rem) {
     width: 1px;
     height: 32px;
-    background: linear-gradient(180deg, transparent, #1e2c45, transparent);
+    background: linear-gradient(180deg, transparent, $border-strong, transparent);
     margin: 0.5rem 0;
   }
-}
-
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
 }

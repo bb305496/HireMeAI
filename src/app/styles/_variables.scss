@@ -1,0 +1,43 @@
+// ── Colors ──────────────────────────────────────────────────
+$bg-base:         #080b12;
+$bg-surface:      #0b0f1a;
+$bg-card:         #0d1117;
+
+$border:          #141b2d;
+$border-strong:   #1e2c45;
+$border-hover:    rgba(59, 130, 246, 0.2);
+
+$blue:            #3b82f6;
+$blue-dark:       #2563eb;
+$blue-glow:       rgba(59, 130, 246, 0.3);
+$blue-glow-hover: rgba(59, 130, 246, 0.45);
+$blue-subtle:     rgba(59, 130, 246, 0.08);
+$blue-border:     rgba(59, 130, 246, 0.2);
+$blue-border-hover: rgba(59, 130, 246, 0.4);
+
+$indigo-subtle:   rgba(99, 102, 241, 0.05);
+
+$text-primary:    #f1f5f9;
+$text-secondary:  #e2e8f0;
+$text-muted:      #7a8ba6;
+$text-dim:        #4a5a72;
+
+$green:           #22c55e;
+$amber:           #f59e0b;
+$red:             #ef4444;
+$red-muted:       rgba(239, 68, 68, 0.15);
+$red-border:      rgba(239, 68, 68, 0.25);
+
+$font-sans:       'DM Sans', 'Segoe UI', sans-serif;
+
+$radius-sm:       0.5rem;
+$radius-md:       0.6rem;
+$radius-lg:       1rem;
+$radius-pill:     2rem;
+
+$transition-base: all 0.2s ease;
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
