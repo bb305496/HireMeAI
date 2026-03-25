@@ -1,0 +1,91 @@
+$bg-base:      #080b12;
+$bg-card:      #0d1117;
+$border:       #141b2d;
+$border-hover: rgba(59, 130, 246, 0.2);
+$blue:         #3b82f6;
+$text-primary: #f1f5f9;
+$text-muted:   #7a8ba6;
+$text-dim:     #4a5a72;
+
+.account {
+  background-color: $bg-base;
+  min-height: 100vh;
+  padding: 5rem 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.account__container {
+  width: 100%;
+  max-width: 28rem;
+  animation: fadeSlideUp 0.6s ease both;
+}
+
+.card {
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: 1rem;
+  padding: 2.5rem 2rem;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: $border-hover;
+  }
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+
+  &__avatar {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1.5px solid rgba(59, 130, 246, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: $blue;
+    margin-bottom: 0.75rem;
+  }
+
+  &__name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0;
+  }
+
+  &__email {
+    font-size: 0.95rem;
+    color: $text-muted;
+    margin: 0;
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    color: $text-dim;
+    margin: 0.25rem 0 0;
+  }
+
+  &__location-icon {
+    font-size: 0.85rem;
+  }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

@@ -1,1 +1,15 @@
-<p>account.component works!</p>
+<section class="account">
+  <div class="account__container">
+
+    <div class="card profile">
+      <div class="profile__avatar">{{ user.avatarInitials }}</div>
+      <h2 class="profile__name">{{ user.name }}</h2>
+      <p class="profile__email">{{ user.email }}</p>
+      <p class="profile__location">
+        <span class="profile__location-icon">📍</span>
+        {{ user.location }}
+      </p>
+    </div>
+
+  </div>
+</section>
