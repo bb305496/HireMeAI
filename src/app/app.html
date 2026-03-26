@@ -4,9 +4,16 @@
   <main class="main-content">
     <router-outlet/>
   </main>
-  <app-footer/>
 
-  @if (isRegisterOpen()){
+  @defer (on viewport; prefetch on idle){
+    <app-footer/>
+  } @placeholder {
+    <div style="min-height: 10rem;">
+      Loading...
+    </div>
+  }
+
+  @if (isRegisterOpen()) {
     <app-register-modal/>
   }
 

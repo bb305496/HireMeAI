@@ -19,7 +19,7 @@ export class AnalyzerComponent {
   jobOffer = signal<string>('');
   isUrl = signal<boolean>(false);
   readonly maxPDFSize = 5;
-  currentStep = signal<number>(1);
+  currentStep = signal<number>(0);
   private stepInterval: ReturnType<typeof setInterval> | null = null;
 
   result = this.store.selectSignal(selectResult);
@@ -38,7 +38,7 @@ export class AnalyzerComponent {
 
   private startStepProgress(): void {
     this.stopStepProgress();
-    this.currentStep.set(1);
+    this.currentStep.set(0);
     this.stepInterval = setInterval(() => {
       const next = this.currentStep() + 1;
       if (next <= 3) {
@@ -46,7 +46,7 @@ export class AnalyzerComponent {
       } else {
         this.stopStepProgress();
       }
-    }, 5000);
+    }, 7000);
   }
 
   private stopStepProgress(): void {

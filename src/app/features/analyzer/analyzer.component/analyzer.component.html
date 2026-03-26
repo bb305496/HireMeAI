@@ -106,7 +106,7 @@
     }
   }
 
-  @if (result()) {
+  @defer (when result()) {
     <div class="result" >
 
       <div class="result__header">

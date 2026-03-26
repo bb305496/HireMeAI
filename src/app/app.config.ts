@@ -18,6 +18,8 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AuthActions } from './core/auth/+state/auth.actions';
 import { analysisReducer } from './core/analysis/+state/analysis.reducer';
 import { AnalysisEffects } from './core/analysis/+state/analysis.effects';
+import { provideZonelessChangeDetection } from '@angular/core';
+
 
 export function initializeApp(store: Store) {
   return () => store.dispatch(AuthActions.checkSession());
@@ -26,6 +28,7 @@ export function initializeApp(store: Store) {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
+    provideZonelessChangeDetection(),
     provideRouter(routes),
     provideHttpClient(
       withXsrfConfiguration({
