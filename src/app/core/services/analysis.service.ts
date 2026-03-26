@@ -18,6 +18,10 @@ export class AnalysisService {
     formData.append('jobOffer', jobOffer);
     formData.append('isUrl', String(isUrl));
 
-    return this.http.post<AnalysisResponse>(`${this.apiConfig.baseUrl}/analysis/analyze`, formData);
+    return this.http.post<AnalysisResponse>(
+      `${this.apiConfig.baseUrl}/analysis/analyze`,
+      formData,
+      { withCredentials: true }
+    );
   }
 }

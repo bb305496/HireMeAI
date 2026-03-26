@@ -1,1 +1,20 @@
-<p>analyzer-form-component works!</p>
+<div>
+  <input type="file" accept=".pdf" (change)="onFileChange($event)" />
+
+  <textarea
+    [value]="jobOffer()"
+    (input)="jobOffer.set($any($event.target).value)"
+    placeholder="Paste job offer or URL">
+  </textarea>
+
+  <label>
+    <input type="checkbox"
+           [checked]="isUrl()"
+           (change)="isUrl.set($any($event.target).checked)" />
+    Is URL
+  </label>
+
+  <button (click)="onSubmit()" [disabled]="isLoading()">
+    {{ isLoading() ? 'Analyzing...' : 'Analyze' }}
+  </button>
+</div>
