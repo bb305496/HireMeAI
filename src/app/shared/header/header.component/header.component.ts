@@ -4,14 +4,14 @@ import {
   HostListener, inject,
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import {Store} from '@ngrx/store';
-import {UiActions} from '../../../core/ui/modal/+state/ui.actions';
-import {selectIsLoggedIn} from '../../../core/auth/+state/auth.selectors';
-import {AuthActions} from '../../../core/auth/+state/auth.actions';
-import {NavLink} from '../../../core/models/models';
-import {toSignal} from '@angular/core/rxjs-interop';
-import {distinctUntilChanged, fromEvent} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { UiActions } from '../../../core/ui/modal/+state/ui.actions';
+import { selectIsLoggedIn } from '../../../core/auth/+state/auth.selectors';
+import { AuthActions } from '../../../core/auth/+state/auth.actions';
+import { NavLink } from '../../../core/models/models';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { distinctUntilChanged, fromEvent } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',

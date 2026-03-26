@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {environment} from "../../../../environments/environment";
-import {NavLink} from '../../../core/models/models';
-import {RouterLink} from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { environment } from "../../../../environments/environment";
+import { NavLink } from '../../../core/models/models';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',

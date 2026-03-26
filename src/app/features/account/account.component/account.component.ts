@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {selectEmail, selectLocation, selectName} from '../../../core/auth/+state/auth.selectors';
-import {AuthActions} from '../../../core/auth/+state/auth.actions';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectEmail, selectLocation, selectName } from '../../../core/auth/+state/auth.selectors';
+import { AuthActions } from '../../../core/auth/+state/auth.actions';
 
 @Component({
   selector: 'app-account',

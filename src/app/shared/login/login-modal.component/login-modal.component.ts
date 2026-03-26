@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Store} from '@ngrx/store';
-import {selectError, selectLoading} from '../../../core/auth/+state/auth.selectors';
-import {AuthActions} from '../../../core/auth/+state/auth.actions';
-import {UiActions} from '../../../core/ui/modal/+state/ui.actions';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { selectError, selectLoading } from '../../../core/auth/+state/auth.selectors';
+import { AuthActions } from '../../../core/auth/+state/auth.actions';
+import { UiActions } from '../../../core/ui/modal/+state/ui.actions';
 
 @Component({
   selector: 'app-login-modal',
