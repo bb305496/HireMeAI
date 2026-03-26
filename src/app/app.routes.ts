@@ -8,6 +8,7 @@ export const routes: Routes = [
   },
   {
     path: 'analyzer',
+    canActivate: [authGuard],
     loadComponent: () => import('./features/analyzer/analyzer.component/analyzer.component').then(m => m.AnalyzerComponent),
   },
   {

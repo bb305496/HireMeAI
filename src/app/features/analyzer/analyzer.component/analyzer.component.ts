@@ -2,11 +2,10 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { Store } from '@ngrx/store';
 import { AnalysisActions} from '../../../core/analysis/+state/analysis.actions';
 import { selectResult, selectLoading, selectError } from '../../../core/analysis/+state/analysis.selectors';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-analyzer',
-  imports: [AsyncPipe],
+  imports: [],
   templateUrl: './analyzer.component.html',
   styleUrl: './analyzer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
