@@ -37,12 +37,12 @@
             </div>
           }
         </div>
-        <input #fileInput type="file" accept=".pdf" (change)="onFileChange($event)" style="display:none" />
+        <input #fileInput type="file" accept=".pdf" [disabled]="loading()" (change)="onFileChange($event)" style="display:none" />
       </div>
 
       <div class="analyzer__toggle">
-        <button class="analyzer__toggle-btn" [class.analyzer__toggle-btn--active]="!isUrl()" (click)="isUrl.set(false)">Paste text</button>
-        <button class="analyzer__toggle-btn" [class.analyzer__toggle-btn--active]="isUrl()" (click)="isUrl.set(true)">Job URL</button>
+        <button class="analyzer__toggle-btn" [disabled]="loading()" [class.analyzer__toggle-btn--active]="!isUrl()" (click)="isUrl.set(false)">Paste text</button>
+        <button class="analyzer__toggle-btn" [disabled]="loading()" [class.analyzer__toggle-btn--active]="isUrl()" (click)="isUrl.set(true)">Job URL</button>
       </div>
 
       <div class="analyzer__field">
@@ -145,6 +145,13 @@
           </div>
           <div class="result__score-sub">{{ result()!.overallRating }} / 5</div>
         </div>
+      </div>
+      <div class="result__disclaimer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#6b7280" stroke-width="1.8"/>
+          <path d="M12 8v4M12 16h.01" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span>The match percentage and star rating are approximate indicators - focus on the strengths, missing skills, and suggestions below for actionable insights.</span>
       </div>
 
       <div class="result__section">

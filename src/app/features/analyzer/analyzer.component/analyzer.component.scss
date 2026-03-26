@@ -502,3 +502,22 @@
   justify-content: center;
   margin-top: 0.1rem;
 }
+
+.result__disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(107, 114, 128, 0.08);
+  border: 1px solid rgba(107, 114, 128, 0.2);
+  border-radius: 8px;
+  color: #6b7280;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.result__disclaimer svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
