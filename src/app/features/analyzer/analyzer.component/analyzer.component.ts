@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AnalysisActions} from '../../../core/analysis/+state/analysis.actions';
 import { selectResult, selectLoading, selectError } from '../../../core/analysis/+state/analysis.selectors';
@@ -17,10 +17,42 @@ export class AnalyzerComponent {
   jobOffer = signal<string>('');
   isUrl = signal<boolean>(false);
   readonly maxPDFSize = 5;
+  currentStep = signal<number>(1);
+  private stepInterval: ReturnType<typeof setInterval> | null = null;
 
   result = this.store.selectSignal(selectResult);
   loading = this.store.selectSignal(selectLoading);
   error = this.store.selectSignal(selectError);
+
+  constructor() {
+    effect(() => {
+      if (this.loading()) {
+        this.startStepProgress();
+      } else {
+        this.stopStepProgress();
+      }
+    });
+  }
+
+  private startStepProgress(): void {
+    this.stopStepProgress();
+    this.currentStep.set(1);
+    this.stepInterval = setInterval(() => {
+      const next = this.currentStep() + 1;
+      if (next <= 3) {
+        this.currentStep.set(next);
+      } else {
+        this.stopStepProgress();
+      }
+    }, 5000);
+  }
+
+  private stopStepProgress(): void {
+    if (this.stepInterval) {
+      clearInterval(this.stepInterval);
+      this.stepInterval = null;
+    }
+  }
 
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;

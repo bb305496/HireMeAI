@@ -86,19 +86,19 @@
 
     @if (loading()) {
       <div class="analyzer__steps">
-        <div class="analyzer__step analyzer__step--done">
+        <div class="analyzer__step" [class.analyzer__step--done]="currentStep() > 0" [class.analyzer__step--active]="currentStep() === 0">
           <div class="analyzer__step-dot"></div>
           <span>CV uploaded</span>
         </div>
-        <div class="analyzer__step analyzer__step--active">
+        <div class="analyzer__step" [class.analyzer__step--done]="currentStep() > 1" [class.analyzer__step--active]="currentStep() === 1">
           <div class="analyzer__step-dot"></div>
           <span>Reading job requirements...</span>
         </div>
-        <div class="analyzer__step">
+        <div class="analyzer__step" [class.analyzer__step--done]="currentStep() > 2" [class.analyzer__step--active]="currentStep() === 2">
           <div class="analyzer__step-dot"></div>
           <span>Comparing skills</span>
         </div>
-        <div class="analyzer__step">
+        <div class="analyzer__step" [class.analyzer__step--done]="currentStep() > 3" [class.analyzer__step--active]="currentStep() === 3">
           <div class="analyzer__step-dot"></div>
           <span>Generating report</span>
         </div>
