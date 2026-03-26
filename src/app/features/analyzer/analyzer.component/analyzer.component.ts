@@ -16,6 +16,7 @@ export class AnalyzerComponent {
   cvFile = signal<File | null>(null);
   jobOffer = signal<string>('');
   isUrl = signal<boolean>(false);
+  readonly maxPDFSize = 5;
 
   result = this.store.selectSignal(selectResult);
   loading = this.store.selectSignal(selectLoading);
@@ -41,5 +42,12 @@ export class AnalyzerComponent {
         isUrl: this.isUrl()
       }
     }));
+  }
+
+  onReset(): void {
+    this.store.dispatch(AnalysisActions.clearResult());
+    this.cvFile.set(null);
+    this.jobOffer.set('');
+    this.isUrl.set(false);
   }
 }

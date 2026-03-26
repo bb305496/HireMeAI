@@ -1,20 +1,214 @@
-<div>
-  <input type="file" accept=".pdf" (change)="onFileChange($event)" />
+<div class="analyzer">
 
-  <textarea
-    [value]="jobOffer()"
-    (input)="jobOffer.set($any($event.target).value)"
-    placeholder="Paste job offer or URL">
-  </textarea>
+  @if (!result()) {
+    <div class="analyzer__hero">
+      <div class="analyzer__badge">AI-Powered Analysis</div>
+      <h1 class="analyzer__title">Analyze your CV</h1>
+      <p class="analyzer__desc">Upload your CV and paste a job offer - AI will score the match and tell you exactly what to improve.</p>
+    </div>
 
-  <label>
-    <input type="checkbox"
-           [checked]="isUrl()"
-           (change)="isUrl.set($any($event.target).checked)" />
-    Is URL
-  </label>
+    <div class="analyzer__card">
 
-  <button (click)="onSubmit()" [disabled]="loading()">
-    {{ loading() ? 'Analyzing...' : 'Analyze' }}
-  </button>
+      <div class="analyzer__field">
+        <label class="analyzer__label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 2v6h6" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          CV File <span class="analyzer__required">*</span>
+        </label>
+
+        <div class="analyzer__upload" [class.analyzer__upload--active]="cvFile()" (click)="fileInput.click()">
+          @if (cvFile()) {
+            <div class="analyzer__upload-ready">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M22 4L12 14.01l-3-3" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{ cvFile()!.name }}</span>
+            </div>
+          } @else {
+            <div class="analyzer__upload-empty">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Click to upload PDF</span>
+              <small>Max {{ maxPDFSize }}MB</small>
+            </div>
+          }
+        </div>
+        <input #fileInput type="file" accept=".pdf" (change)="onFileChange($event)" style="display:none" />
+      </div>
+
+      <div class="analyzer__toggle">
+        <button class="analyzer__toggle-btn" [class.analyzer__toggle-btn--active]="!isUrl()" (click)="isUrl.set(false)">Paste text</button>
+        <button class="analyzer__toggle-btn" [class.analyzer__toggle-btn--active]="isUrl()" (click)="isUrl.set(true)">Job URL</button>
+      </div>
+
+      <div class="analyzer__field">
+        <label class="analyzer__label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="3" width="20" height="14" rx="2" stroke="#3b82f6" stroke-width="1.8"/>
+            <path d="M8 21h8M12 17v4" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          {{ isUrl() ? 'Job Offer URL' : 'Job Offer Text' }} <span class="analyzer__required">*</span>
+        </label>
+        @if (isUrl()) {
+          <input
+            class="analyzer__input"
+            type="url"
+            placeholder="https://example.com/job-offer"
+            [value]="jobOffer()"
+            (input)="jobOffer.set($any($event.target).value)" />
+        } @else {
+          <textarea
+            class="analyzer__textarea"
+            placeholder="Paste the full job description here..."
+            [value]="jobOffer()"
+            (input)="jobOffer.set($any($event.target).value)">
+          </textarea>
+        }
+      </div>
+
+      <button class="analyzer__btn" (click)="onSubmit()" [disabled]="loading() || !cvFile() || !jobOffer()">
+        @if (loading()) {
+          <span class="analyzer__spinner"></span>
+          Analyzing...
+        } @else {
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Analyze CV
+        }
+      </button>
+    </div>
+
+    @if (loading()) {
+      <div class="analyzer__steps">
+        <div class="analyzer__step analyzer__step--done">
+          <div class="analyzer__step-dot"></div>
+          <span>CV uploaded</span>
+        </div>
+        <div class="analyzer__step analyzer__step--active">
+          <div class="analyzer__step-dot"></div>
+          <span>Reading job requirements...</span>
+        </div>
+        <div class="analyzer__step">
+          <div class="analyzer__step-dot"></div>
+          <span>Comparing skills</span>
+        </div>
+        <div class="analyzer__step">
+          <div class="analyzer__step-dot"></div>
+          <span>Generating report</span>
+        </div>
+      </div>
+    }
+  }
+
+  @if (result()) {
+    <div class="result" >
+
+      <div class="result__header">
+        <div>
+          <div class="analyzer__badge">Analysis Complete</div>
+          <h2 class="result__title">Your CV Report</h2>
+        </div>
+        <button class="result__reset" (click)="onReset()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 3v5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          New Analysis
+        </button>
+      </div>
+
+      <div class="result__scores">
+        <div class="result__score-card">
+          <div class="result__score-label">Match</div>
+          <div class="result__score-value" [class.result__score-value--low]="result()!.matchPercentage < 40" [class.result__score-value--mid]="result()!.matchPercentage >= 40 && result()!.matchPercentage < 70" [class.result__score-value--high]="result()!.matchPercentage >= 70">
+            {{ result()!.matchPercentage }}%
+          </div>
+          <div class="result__bar">
+            <div class="result__bar-fill" [style.width.%]="result()!.matchPercentage" [class.result__bar-fill--low]="result()!.matchPercentage < 40" [class.result__bar-fill--mid]="result()!.matchPercentage >= 40 && result()!.matchPercentage < 70" [class.result__bar-fill--high]="result()!.matchPercentage >= 70"></div>
+          </div>
+        </div>
+
+        <div class="result__score-card">
+          <div class="result__score-label">Rating</div>
+          <div class="result__stars">
+            @for (star of [1,2,3,4,5]; track star) {
+              <svg width="18" height="18" viewBox="0 0 24 24" [class.result__star--filled]="star <= result()!.overallRating">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#f59e0b" stroke-width="1.8" stroke-linejoin="round"/>
+              </svg>
+            }
+          </div>
+          <div class="result__score-sub">{{ result()!.overallRating }} / 5</div>
+        </div>
+      </div>
+
+      <div class="result__section">
+        <h3 class="result__section-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#3b82f6" stroke-width="1.8"/>
+            <path d="M12 8v4M12 16h.01" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Summary
+        </h3>
+        <p class="result__summary">{{ result()!.summary }}</p>
+      </div>
+
+      <div class="result__grid">
+
+        <div class="result__section result__section--green">
+          <h3 class="result__section-title result__section-title--green">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M22 4L12 14.01l-3-3" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Strengths
+          </h3>
+          <ul class="result__list result__list--green">
+            @for (item of result()!.strengths; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+
+        <div class="result__section result__section--red">
+          <h3 class="result__section-title result__section-title--red">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="#ef4444" stroke-width="1.8"/>
+              <path d="M15 9l-6 6M9 9l6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            Missing Skills
+          </h3>
+          <ul class="result__list result__list--red">
+            @for (item of result()!.missingSkills; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="result__section">
+        <h3 class="result__section-title result__section-title--amber">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#f59e0b" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          Suggestions
+        </h3>
+        <ol class="result__suggestions">
+          @for (item of result()!.suggestions; track item; let i = $index) {
+            <li>
+              <span class="result__suggestion-num">{{ i + 1 }}</span>
+              <span>{{ item }}</span>
+            </li>
+          }
+        </ol>
+      </div>
+
+    </div>
+  }
+
 </div>
