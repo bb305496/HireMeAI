@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@ang
 import { Store } from '@ngrx/store';
 import { AnalysisActions} from '../../../core/analysis/+state/analysis.actions';
 import { selectResult, selectLoading, selectError } from '../../../core/analysis/+state/analysis.selectors';
+import { ToastService } from '../../../core/ui/toast/service/toast.service';
 
 @Component({
   selector: 'app-analyzer',
@@ -12,6 +13,7 @@ import { selectResult, selectLoading, selectError } from '../../../core/analysis
 })
 export class AnalyzerComponent {
   private store = inject(Store);
+  private toast = inject(ToastService);
 
   cvFile = signal<File | null>(null);
   jobOffer = signal<string>('');
@@ -57,7 +59,22 @@ export class AnalyzerComponent {
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files?.length) {
-      this.cvFile.set(input.files[0]);
+      const file = input.files[0];
+
+      if (file.type !== 'application/pdf') {
+        this.toast.show('Only PDF files are allowed', 'error');
+        input.value = '';
+        return;
+      }
+
+      if (file.size > this.maxPDFSize * 1024 * 1024) {
+        this.toast.show(`File exceeds the ${this.maxPDFSize}MB size limit`, 'error');
+        input.value = '';
+        return;
+      }
+
+      this.cvFile.set(file);
+
     }
   }
 
