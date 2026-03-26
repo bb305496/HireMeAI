@@ -7,3 +7,9 @@ export interface AnalysisResponse {
   strengths: string[];
   summary: string;
 }
+
+export interface AnalysisData {
+  cv: File;
+  jobOffer: string;
+  isUrl: boolean
+}

@@ -16,6 +16,8 @@ import * as ToastEffects from './core/ui/toast/+state/toast.effects';
 import { uiReducer } from './core/ui/modal/+state/ui.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AuthActions } from './core/auth/+state/auth.actions';
+import { analysisReducer } from './core/analysis/+state/analysis.reducer';
+import { AnalysisEffects } from './core/analysis/+state/analysis.effects';
 
 export function initializeApp(store: Store) {
   return () => store.dispatch(AuthActions.checkSession());
@@ -34,9 +36,10 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       auth: authReducer,
       ui: uiReducer,
+      analysis: analysisReducer,
     },
     ),
-    provideEffects([AuthEffects, ToastEffects]),
+    provideEffects([AuthEffects, ToastEffects, AnalysisEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideAppInitializer(() => {
       const store = inject(Store);

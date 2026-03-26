@@ -1,22 +1,26 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { AnalysisService } from '../../../core/services/analysis.service';
-import { AnalysisResponse } from '../../../core/models/analysis.model';
+import { Store } from '@ngrx/store';
+import { AnalysisActions} from '../../../core/analysis/+state/analysis.actions';
+import { selectResult, selectLoading, selectError } from '../../../core/analysis/+state/analysis.selectors';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-analyzer',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './analyzer.component.html',
   styleUrl: './analyzer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnalyzerComponent {
-  private analysisService = inject(AnalysisService);
+  private store = inject(Store);
 
   cvFile = signal<File | null>(null);
   jobOffer = signal<string>('');
   isUrl = signal<boolean>(false);
-  isLoading = signal<boolean>(false);
-  result = signal<AnalysisResponse | null>(null);
+
+  result = this.store.selectSignal(selectResult);
+  loading = this.store.selectSignal(selectLoading);
+  error = this.store.selectSignal(selectError);
 
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -29,23 +33,14 @@ export class AnalyzerComponent {
     const cv = this.cvFile();
     const offer = this.jobOffer();
 
-    if (!cv || !offer) {
-      console.log('Missing CV or job offer');
-      return;
-    }
+    if (!cv || !offer) return;
 
-    this.isLoading.set(true);
-
-    this.analysisService.analyzeCv(cv, offer, this.isUrl()).subscribe({
-      next: (response) => {
-        console.log('Analysis result:', response);
-        this.result.set(response);
-        this.isLoading.set(false);
-      },
-      error: (err) => {
-        console.error('Analysis error:', err);
-        this.isLoading.set(false);
+    this.store.dispatch(AnalysisActions.analyzeCv({
+      data: {
+        cv,
+        jobOffer: offer,
+        isUrl: this.isUrl()
       }
-    });
+    }));
   }
 }

@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AnalysisResponse } from '../models/analysis.model';
-import { ApiConfigService } from './api-config.service';
+import { AnalysisResponse } from '../model/analysis.model';
+import { ApiConfigService } from '../../services/api-config.service';
 
 
 @Injectable({

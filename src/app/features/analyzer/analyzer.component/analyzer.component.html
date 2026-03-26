@@ -14,7 +14,7 @@
     Is URL
   </label>
 
-  <button (click)="onSubmit()" [disabled]="isLoading()">
-    {{ isLoading() ? 'Analyzing...' : 'Analyze' }}
+  <button (click)="onSubmit()" [disabled]="loading()">
+    {{ loading() ? 'Analyzing...' : 'Analyze' }}
   </button>
 </div>
