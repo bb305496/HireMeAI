@@ -1,0 +1,114 @@
+<div class="result">
+  <div class="result__header">
+    <div>
+      <div class="analyzer__badge">Analysis Complete</div>
+      <h2 class="result__title">Your CV Report</h2>
+    </div>
+    <button class="result__reset" (click)="onResetClicked()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3 3v5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      New Analysis
+    </button>
+  </div>
+
+  <div class="result__scores">
+    <div class="result__score-card">
+      <div class="result__score-label">Match</div>
+      <div class="result__score-value"
+           [class.result__score-value--low]="result()!.matchPercentage < 40"
+           [class.result__score-value--mid]="result()!.matchPercentage >= 40 && result()!.matchPercentage < 70"
+           [class.result__score-value--high]="result()!.matchPercentage >= 70">
+        {{ result()!.matchPercentage }}%
+      </div>
+      <div class="result__bar">
+        <div class="result__bar-fill"
+             [style.width.%]="result()!.matchPercentage"
+             [class.result__bar-fill--low]="result()!.matchPercentage < 40"
+             [class.result__bar-fill--mid]="result()!.matchPercentage >= 40 && result()!.matchPercentage < 70"
+             [class.result__bar-fill--high]="result()!.matchPercentage >= 70"></div>
+      </div>
+    </div>
+
+    <div class="result__score-card">
+      <div class="result__score-label">Rating</div>
+      <div class="result__stars">
+        @for (star of [1,2,3,4,5]; track star) {
+          <svg width="18" height="18" viewBox="0 0 24 24" [class.result__star--filled]="star <= result()!.overallRating">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#f59e0b" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        }
+      </div>
+      <div class="result__score-sub">{{ result()!.overallRating }} / 5</div>
+    </div>
+  </div>
+
+  <div class="result__disclaimer">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="#6b7280" stroke-width="1.8"/>
+      <path d="M12 8v4M12 16h.01" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span>The match percentage and star rating are approximate indicators - focus on the strengths, missing skills, and suggestions below for actionable insights.</span>
+  </div>
+
+  <div class="result__section">
+    <h3 class="result__section-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="#3b82f6" stroke-width="1.8"/>
+        <path d="M12 8v4M12 16h.01" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      Summary
+    </h3>
+    <p class="result__summary">{{ result()!.summary }}</p>
+  </div>
+
+  <div class="result__grid">
+    <div class="result__section result__section--green">
+      <h3 class="result__section-title result__section-title--green">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M22 4L12 14.01l-3-3" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Strengths
+      </h3>
+      <ul class="result__list result__list--green">
+        @for (item of result()!.strengths; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </div>
+
+    <div class="result__section result__section--red">
+      <h3 class="result__section-title result__section-title--red">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#ef4444" stroke-width="1.8"/>
+          <path d="M15 9l-6 6M9 9l6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        Missing Skills
+      </h3>
+      <ul class="result__list result__list--red">
+        @for (item of result()!.missingSkills; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="result__section">
+    <h3 class="result__section-title result__section-title--amber">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#f59e0b" stroke-width="1.8" stroke-linejoin="round"/>
+      </svg>
+      Suggestions
+    </h3>
+    <ol class="result__suggestions">
+      @for (item of result()!.suggestions; track item; let i = $index) {
+        <li>
+          <span class="result__suggestion-num">{{ i + 1 }}</span>
+          <span>{{ item }}</span>
+        </li>
+      }
+    </ol>
+  </div>
+</div>

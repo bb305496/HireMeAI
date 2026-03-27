@@ -3,10 +3,13 @@ import { Store } from '@ngrx/store';
 import { AnalysisActions} from '../../../core/analysis/+state/analysis.actions';
 import { selectResult, selectLoading, selectError } from '../../../core/analysis/+state/analysis.selectors';
 import { ToastService } from '../../../core/ui/toast/service/toast.service';
+import { AnalyzerResultComponent } from '../analyzer-result.component/analyzer-result.component';
 
 @Component({
   selector: 'app-analyzer',
-  imports: [],
+  imports: [
+    AnalyzerResultComponent
+  ],
   templateUrl: './analyzer.component.html',
   styleUrl: './analyzer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
