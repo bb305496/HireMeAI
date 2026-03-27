@@ -95,11 +95,4 @@ export class AnalyzerComponent {
       }
     }));
   }
-
-  onReset(): void {
-    this.store.dispatch(AnalysisActions.clearResult());
-    this.cvFile.set(null);
-    this.jobOffer.set('');
-    this.isUrl.set(false);
-  }
 }

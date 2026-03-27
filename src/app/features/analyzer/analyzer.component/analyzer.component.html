@@ -106,7 +106,7 @@
     }
   }
 
-  @defer (when result()) {
+  @if (result()) {
     <app-analyzer-result/>
   }
 
