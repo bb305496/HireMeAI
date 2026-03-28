@@ -148,7 +148,7 @@ src/app
 For complex async flows - authentication, API error handling, retry logic - NgRx Effects provide a structured, testable pipeline. `store.selectSignal()` bridges NgRx and the Zoneless world, giving components reactive, Signal-based access to global state without manual subscriptions.
 
 ### Why `@defer`?
-Heavy components (e.g. the analysis result panel) are wrapped in `@defer (on viewport)` blocks. This means the initial bundle ships without them - they load only when the user scrolls them into view, directly improving LCP and TTI scores.
+Heavy components (e.g. footer) are wrapped in `@defer (on viewport)` blocks. This means the initial bundle ships without them - they load only when the user scrolls them into view, directly improving LCP and TTI scores.
 
 ---
 
