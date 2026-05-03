@@ -17,6 +17,7 @@ A bleeding-edge full-stack web application that automatically analyzes and score
 
 ## 🌐 Live Demo
 
+> 🔴 **Live demo is currently offline** — server temporarily unavailable.
 **👉 [https://hiremeai.duckdns.org](https://hiremeai.duckdns.org)**
 
 ### How to test it:
