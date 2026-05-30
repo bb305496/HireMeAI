@@ -29,6 +29,95 @@ A bleeding-edge full-stack web application that automatically analyzes and score
 
 ---
 
+## 🚀 Getting Started
+
+### Prerequisites
+- **Node.js** (v18+) and **npm** (v10.9.2+)
+- **Backend API** running (see [Backend Repository](https://github.com/bb305496/HireMeAIBackend) for setup instructions)
+- Environment variables configured for API endpoints
+
+### Development Setup
+
+#### 1. Install Dependencies
+```bash
+npm install
+```
+
+#### 2. Configure Environment Variables
+Create `src/environments/environment.ts` with your backend API configuration:
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080/api' // Replace with your backend URL
+};
+```
+
+#### 3. Start Development Server
+```bash
+npm start
+```
+The application will be available at **http://localhost:4200**
+
+The dev server includes:
+- 🔄 Hot Reload - changes reflect instantly
+- 🐛 Source Maps - for easier debugging
+- 📊 NgRx DevTools - for state management inspection
+
+### Production Build
+
+#### Build for Production
+```bash
+npm run build
+```
+Output in `dist/` directory with:
+- ✅ Optimized bundle size (< 500kB initial)
+- ✅ Tree-shaking and minification
+- ✅ Sourcemap generation
+
+### Docker Deployment
+
+#### Build & Run with Docker Compose
+```bash
+docker-compose up -d
+```
+
+This runs:
+- **Nginx** on port `80` (HTTP) and `443` (HTTPS)
+- Serves static Angular build from `./current` directory
+- Configuration via `nginx.conf`
+
+#### Manual Docker Build
+```bash
+npm run build
+docker build -t hiremeai-frontend:latest .
+docker run -p 80:80 -p 443:443 hiremeai-frontend:latest
+```
+
+### Testing
+
+#### Run Tests
+```bash
+npm test
+```
+
+#### Watch Mode
+```bash
+ng test --watch
+```
+
+### API Integration
+
+The frontend communicates with the Spring Boot backend via:
+- **JWT Authentication** - Tokens managed in NgRx auth store
+- **REST Endpoints**:
+  - `POST /api/auth/register` - User registration
+  - `POST /api/auth/login` - User login
+  - `POST /api/analyze` - CV analysis with Gemini AI
+
+Ensure backend is running on the configured `apiUrl` before using the analyzer.
+
+---
+
 ## 🚀 The Vision: Pushing Angular to the Edge
 
 This application was developed not just to solve the problem of manual CV screening, but as a technological experiment to implement and test the future of Angular (v21). The core philosophy is **maximum performance via native reactivity**.
